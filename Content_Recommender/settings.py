@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt.token_blacklist',
     # my apps
     'UserApp',
+    'ContentApp',
 ]
 
 MIDDLEWARE = [
@@ -152,6 +153,8 @@ REST_AUTH = {
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
+        'rest_framework.authentication.SessionAuthentication',
+
     )
 }
 
