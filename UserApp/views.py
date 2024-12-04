@@ -7,7 +7,6 @@ from rest_framework import status, generics
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.tokens import RefreshToken
-from django.forms import ModelForm
 
 from UserApp.models import User
 
