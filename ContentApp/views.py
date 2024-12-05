@@ -1,5 +1,6 @@
 from UserApp.views import check_user
 from modules.json_response import json_contents_list
+from modules.visit_count_algorithm import get_ordered_posts
 from .models import ContentModel, ViewCountModel
 from django.http import JsonResponse
 """
@@ -16,10 +17,12 @@ def json_post(model):
 
 
 def home(request):
-    model = ContentModel.objects.all()
-    contents = json_post(model)
-
     user = check_user(request=request)
+    # order posts based on user activities
+    ordered_posts = get_ordered_posts(user)
+    # json the result of the ordered post
+    contents = json_post(ordered_posts)
+
     try:
         return JsonResponse({
             "message": f"Hello, {user.username}!",
