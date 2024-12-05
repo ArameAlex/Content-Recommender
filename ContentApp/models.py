@@ -30,5 +30,8 @@ class ViewCountModel(models.Model):
     # one user view count to keep track of user visited contents
     view_count = models.IntegerField(default=0)
 
+    class Meta:
+        unique_together = ('content', 'user')
+
     def __str__(self):
         return self.content.name

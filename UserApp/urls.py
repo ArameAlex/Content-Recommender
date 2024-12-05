@@ -9,7 +9,6 @@ urlpatterns = [
          name='login'),
     path('register/', views.RegisterViewDRF.as_view(), name='register'),
     path('logout/', views.LogoutView.as_view(), name='logout'),
-    path('user-status/', views.user_status_view),  # Function-based view
-    path('user-status-class/', views.UserStatusView.as_view()),  # Class-based view
+    path('user-status/', views.UserStatusView.as_view()),  # Class-based view
 
 ]

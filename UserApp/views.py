@@ -1,4 +1,3 @@
-from rest_framework.decorators import api_view
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 # rest frame ork and simple jwt
@@ -11,6 +10,9 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from UserApp.models import User
 
 from UserApp.serializers import UserSerializer
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework_simplejwt.exceptions import InvalidToken, TokenError
+from rest_framework.exceptions import AuthenticationFailed
 
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -67,26 +69,6 @@ class LogoutView(APIView):
             return Response({"message": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['GET'])
-def user_status_view(request):
-    # Check if user is authenticated
-    if request.user.is_authenticated:
-        # User is logged in; return their details
-        return Response({
-            "message": f"Hello, {request.user.username}!",
-            "user": {
-                "username": request.user.username,
-                "phone": getattr(request.user, 'phone', None),
-            }
-        })
-    else:
-        # User is not logged in; show login link
-        return Response({
-            "message": "You are not logged in. Please log in to continue.",
-            "login_url": "/api/token/"
-        })
-
-
 class UserStatusView(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -98,3 +80,28 @@ class UserStatusView(APIView):
                 "phone": getattr(request.user, 'phone', None),
             }
         })
+
+
+def check_user(request):
+    auth_header = request.headers.get('Authorization', None)
+
+    if not auth_header:
+        json_response = {"message": "You are not logged in"}
+        return json_response
+
+    try:
+        # Parse the token from the Authorization header
+        auth_token = auth_header.split(' ')[1]
+    except IndexError:
+        json_response = {"message": "Authorization header must be in the format 'Bearer <token>'"}
+        return json_response
+
+    # Validate the token and get the user
+    jwt_authenticator = JWTAuthentication()
+    try:
+        validated_token = jwt_authenticator.get_validated_token(auth_token)
+        user = jwt_authenticator.get_user(validated_token)
+        return user
+    except (InvalidToken, TokenError, AuthenticationFailed):
+        json_response = {"message": "Invalid or expired token"}
+        return json_response

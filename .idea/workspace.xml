@@ -5,9 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0661e8b3-95c9-4dbf-9211-633bc7427930" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/modules/json_response.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ContentApp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/ContentApp/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ContentApp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/ContentApp/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ContentApp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/ContentApp/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content_Recommender/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Content_Recommender/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserApp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/UserApp/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserApp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/UserApp/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +25,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -43,7 +48,7 @@
     &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;G:/me/Web aplications/blog_project/blog/views.py&quot;,
+    &quot;last_opened_file_path&quot;: &quot;G:/me/Web Test Apps/eshop-json/utils/json_response.py&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -99,7 +104,8 @@
       <workItem from="1731776854025" duration="28000" />
       <workItem from="1733170442837" duration="1481000" />
       <workItem from="1733303949404" duration="5231000" />
-      <workItem from="1733318710993" duration="1417000" />
+      <workItem from="1733318710993" duration="3314000" />
+      <workItem from="1733410635707" duration="4861000" />
     </task>
     <servers />
   </component>
