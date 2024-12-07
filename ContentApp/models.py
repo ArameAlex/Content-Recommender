@@ -35,3 +35,11 @@ class ViewCountModel(models.Model):
 
     def __str__(self):
         return self.content.name
+
+
+class FavoritePosts(models.Model):
+    content = models.ForeignKey(ContentModel, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.content.name}, {self.user.username}'

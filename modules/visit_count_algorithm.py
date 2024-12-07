@@ -25,6 +25,7 @@ def get_ordered_posts(user):
     # Fetch posts grouped by category
     categorized_posts = {}
     for category_id in top_categories:
+        # get the List of post of a Category
         categorized_posts[category_id] = list(
             ContentModel.objects.filter(category_id=category_id)
         )
@@ -53,8 +54,9 @@ def get_ordered_posts(user):
     non_top_post_index = 0
 
     while top_post_index < len(ordered_posts) or non_top_post_index < len(other_posts):
+        random_number = random.randrange(3, 7)
         # Add up to 5 posts from top posts
-        for _ in range(5):
+        for post in range(random_number):
             if top_post_index < len(ordered_posts):
                 all_posts.append(ordered_posts[top_post_index])
                 top_post_index += 1

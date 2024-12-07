@@ -1,11 +1,10 @@
 from UserApp.views import check_user
 from modules.json_response import json_contents_list
 from modules.visit_count_algorithm import get_ordered_posts
-from .models import ContentModel, ViewCountModel
-from django.http import JsonResponse
-"""
-CHANGE THE DAY DELTA OF ACCESS TOKEN!!
-"""
+from .models import ContentModel, ViewCountModel, FavoritePosts
+from django.http import JsonResponse, HttpRequest
+
+"""MAKE THE ACCESS TOKEN TO 5MIN!"""
 
 
 def json_post(model):
@@ -55,7 +54,7 @@ def single_content(request, id):
         view_count_obj.save()
 
         # Prepare the content response
-        contents = json_contents_list(content)  # Assuming this converts the content to JSON
+        contents = json_contents_list(content)
 
         # Return the response
         return JsonResponse({
@@ -64,5 +63,32 @@ def single_content(request, id):
             "contents": contents,
             "your_view_count": view_count_obj.view_count
         }, safe=False, status=200)
-    except:
+    except Exception:
+        return JsonResponse(user, safe=False, status=401)
+
+
+def saved_contents(request: HttpRequest):
+    user = check_user(request=request)
+
+    try:
+        user_contents = FavoritePosts.objects.filter(user_id=user.id)
+        content_ids = user_contents.values_list('content_id', flat=True)
+        favourite_contents = ContentModel.objects.filter(id__in=content_ids)
+
+        # paginator = Paginator(favourite_products, 16)
+        # page_number = request.GET.get('page', 1)
+        # page_obj = paginator.get_page(page_number)
+
+        # Prepare the product data manually to include the full category details
+        contents = []
+        for product in favourite_contents:
+            product_data = json_post(product)
+            contents.append(product_data)
+        # Return the response
+        return JsonResponse({
+            "message": f"Hello, {user.username}!",
+            "user_id": user.id,
+            "contents": contents,
+        }, safe=False, status=200)
+    except Exception:
         return JsonResponse(user, safe=False, status=401)
