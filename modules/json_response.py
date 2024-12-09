@@ -24,3 +24,23 @@ def json_contents_list(post):
         'image': image
     }
     return post_data
+
+
+def json_comments_list(comment):
+
+    comment_replay = None
+    try:
+        comment_replay = comment.replay.id
+    except AttributeError:
+        pass
+
+    comment_data = {
+            "message": comment.message,
+            "comment_id": comment.id,
+            "content_id": comment.content.id,
+            "user_id": comment.user.id,
+            "reply_id": comment_replay,
+            "date": comment.date.strftime("%Y-%m-%d %H:%M:%S")
+        }
+
+    return comment_data

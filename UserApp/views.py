@@ -86,16 +86,14 @@ def check_user(request):
     auth_header = request.headers.get('Authorization', None)
 
     if not auth_header:
-        json_response = {"message": "You are not logged in"}
-        return json_response
-
+        # json_response = {"message": "You are not logged in"}
+        return None
     try:
         # Parse the token from the Authorization header
         auth_token = auth_header.split(' ')[1]
     except IndexError:
-        json_response = {"message": "Authorization header must be in the format 'Bearer <token>'"}
-        return json_response
-
+        # json_response = {"message": "Authorization header must be in the format 'Bearer <token>'"}
+        return None
     # Validate the token and get the user
     jwt_authenticator = JWTAuthentication()
     try:
@@ -103,5 +101,5 @@ def check_user(request):
         user = jwt_authenticator.get_user(validated_token)
         return user
     except (InvalidToken, TokenError, AuthenticationFailed):
-        json_response = {"message": "Invalid or expired token"}
-        return json_response
+        # json_response = {"message": "Invalid or expired token"}
+        return None
