@@ -54,9 +54,8 @@ def get_ordered_posts(user):
     non_top_post_index = 0
 
     while top_post_index < len(ordered_posts) or non_top_post_index < len(other_posts):
-        random_number = random.randrange(3, 7)
         # Add up to 5 posts from top posts
-        for post in range(random_number):
+        for post in range(random.randrange(3, 7)):
             if top_post_index < len(ordered_posts):
                 all_posts.append(ordered_posts[top_post_index])
                 top_post_index += 1

@@ -92,3 +92,7 @@ def saved_contents(request: HttpRequest):
         }, safe=False, status=200)
     except Exception:
         return JsonResponse(user, safe=False, status=401)
+
+
+def create_comment_view(request):
+    pass

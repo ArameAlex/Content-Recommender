@@ -1,4 +1,6 @@
 from django.db import models
+from django.core.exceptions import ValidationError
+
 
 from UserApp.models import User
 
@@ -43,3 +45,21 @@ class FavoritePosts(models.Model):
 
     def __str__(self):
         return f'{self.content.name}, {self.user.username}'
+
+
+class PostComment(models.Model):
+    content = models.ForeignKey(ContentModel, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now_add=True)
+    message = models.TextField(null=False, blank=False, db_index=True)
+    replay = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True)
+
+    def __str__(self):
+        return '{} by {} in {}'.format(self.message, self.user, self.content)
+
+    def clean(self, *args, **kwargs):
+        try:
+            if self.replay.id is not None and self.content.id != self.replay.content.id:
+                raise ValidationError("Please Comment In Right Post or Replay to Right Comment")
+        except AttributeError:
+            pass

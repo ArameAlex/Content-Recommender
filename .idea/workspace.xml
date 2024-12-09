@@ -8,7 +8,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ContentApp/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/ContentApp/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ContentApp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/ContentApp/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContentApp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/ContentApp/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ContentApp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/ContentApp/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modules/visit_count_algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/visit_count_algorithm.py" afterDir="false" />
     </list>
@@ -46,7 +45,7 @@
     "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "G:/me/Web Test Apps/eshop-json/product_app/models.py",
+    "last_opened_file_path": "G:/me/Web aplications/Climbing_clubs/MainApp/models.py",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -105,6 +104,9 @@
       <workItem from="1733318710993" duration="3314000" />
       <workItem from="1733410635707" duration="7998000" />
       <workItem from="1733589179351" duration="2397000" />
+      <workItem from="1733669698219" duration="412000" />
+      <workItem from="1733671709020" duration="914000" />
+      <workItem from="1733748226966" duration="1075000" />
     </task>
     <servers />
   </component>
