@@ -1,12 +1,16 @@
 import json
 
 from prompt_toolkit.validation import ValidationError
+from rest_framework.generics import UpdateAPIView
+from rest_framework.permissions import IsAuthenticated
 
 from UserApp.views import check_user
 from modules.json_response import json_contents_list, json_comments_list
 from modules.visit_count_algorithm import get_ordered_posts
 from .models import ContentModel, ViewCountModel, FavoritePosts, PostComment
 from django.http import JsonResponse, HttpRequest
+
+from .serializer import CommentUpdateSerializer
 
 """MAKE THE ACCESS TOKEN TO 5MIN!"""
 
@@ -65,9 +69,10 @@ def single_content(request, content_id):
 
     # comments of content
     comments = PostComment.objects.filter(content_id=content_id)
-    comments_json = None
+    comments_json = []
     if comments is not None:
-        comments_json = json_comments_list(comments)
+        for comment in comments:
+            comments_json.append(json_comments_list(comment))
 
     # Return the response
     return JsonResponse({
@@ -89,15 +94,12 @@ def saved_contents(request: HttpRequest):
     content_ids = user_contents.values_list('content_id', flat=True)
     favourite_contents = ContentModel.objects.filter(id__in=content_ids)
 
-    contents = []
-    for product in favourite_contents:
-        product_data = json_post(product)
-        contents.append(product_data)
+    product_data = json_post(favourite_contents)
     # Return the response
     return JsonResponse({
         "message": f"Hello, {user.username}!",
         "user_id": user.id,
-        "contents": contents,
+        "contents": product_data,
     }, safe=False, status=200)
 
 
@@ -113,15 +115,6 @@ def unsaved_contents(request: HttpRequest, content_id):
     else:
         instance.delete()
         return JsonResponse({"Message": "Post Removed From Saved contents"}, safe=False, status=200)
-
-
-"""
-    Create Comment (get userid from token, post id from 
-    request url <int:pk>, and date is auto set)
-    Delete Comment
-    Edit Comment (just Text)
-    Get Comment in single post view
-"""
 
 
 def create_comment_view(request, content_id):
@@ -165,7 +158,7 @@ def create_comment_view(request, content_id):
             user=user,
             content=content,
             message=message,
-            replay=reply_comment  # None if not a reply
+            replay=reply_comment
         )
         return JsonResponse({
             "message": message,
@@ -176,3 +169,25 @@ def create_comment_view(request, content_id):
         }, status=201)
     except ValidationError as e:
         return JsonResponse({"error": str(e)}, status=400)
+
+
+def delete_comment(request: HttpRequest, comment_id):
+    user = check_user(request=request)
+
+    if user is None:  # If user is not logged in, return error
+        return JsonResponse({"message": "You are not logged"}, status=401)
+
+    instance = PostComment.objects.filter(id=comment_id, user_id=user.id)
+    if not instance:
+        return JsonResponse({"Message": "No Comment was find"}, safe=False, status=404)
+    else:
+        instance.delete()
+        return JsonResponse({"Message": "Comment was Removed"}, safe=False, status=200)
+
+
+class ProgramCommentView(UpdateAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = CommentUpdateSerializer
+
+    def get_queryset(self):
+        return PostComment.objects.filter(user=self.request.user)

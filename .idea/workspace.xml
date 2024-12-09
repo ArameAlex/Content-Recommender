@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0661e8b3-95c9-4dbf-9211-633bc7427930" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/ContentApp/serializer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ContentApp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/ContentApp/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ContentApp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/ContentApp/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserApp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/UserApp/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/json_response.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/json_response.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +44,7 @@
     "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "G:/me/Web aplications/Climbing_clubs/MainApp/views.py",
+    "last_opened_file_path": "G:/me/Web aplications/Climbing_clubs/MainApp/serializers.py",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -106,11 +105,23 @@
       <workItem from="1733589179351" duration="2397000" />
       <workItem from="1733669698219" duration="412000" />
       <workItem from="1733671709020" duration="914000" />
-      <workItem from="1733748226966" duration="4826000" />
+      <workItem from="1733748226966" duration="5061000" />
+      <workItem from="1733766289964" duration="2754000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
