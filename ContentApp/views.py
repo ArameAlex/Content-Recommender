@@ -75,11 +75,6 @@ def saved_contents(request: HttpRequest):
         content_ids = user_contents.values_list('content_id', flat=True)
         favourite_contents = ContentModel.objects.filter(id__in=content_ids)
 
-        # paginator = Paginator(favourite_products, 16)
-        # page_number = request.GET.get('page', 1)
-        # page_obj = paginator.get_page(page_number)
-
-        # Prepare the product data manually to include the full category details
         contents = []
         for product in favourite_contents:
             product_data = json_post(product)
@@ -92,6 +87,26 @@ def saved_contents(request: HttpRequest):
         }, safe=False, status=200)
     except Exception:
         return JsonResponse(user, safe=False, status=401)
+
+
+def unsaved_contents(request: HttpRequest, content_id):
+    user = check_user(request=request)
+
+    instance = FavoritePosts.objects.filter(id=content_id, user_id=user.id)
+    if not instance:
+        return JsonResponse({"Message": "No Saved Post Find"}, safe=False, status=404)
+    else:
+        instance.delete()
+        return JsonResponse({"Message": "Post Removed From Saved contents"}, safe=False, status=200)
+
+
+"""
+    Create Comment (get userid from token, post id from 
+    request url <int:pk>, and date is auto set)
+    Delete Comment
+    Edit Comment (just Text)
+    Get Comment in single post view
+"""
 
 
 def create_comment_view(request):
