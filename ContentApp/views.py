@@ -12,8 +12,6 @@ from django.http import JsonResponse, HttpRequest
 
 from .serializer import CommentUpdateSerializer
 
-"""MAKE THE ACCESS TOKEN TO 5MIN!"""
-
 
 def json_post(model):
     contents = []
@@ -34,8 +32,6 @@ def home(request):
         return JsonResponse({"message": "You are not logged"}, status=401)
 
     return JsonResponse({
-        "message": f"Hello, {user.username}!",
-        "user_id": user.id,
         "contents": contents
     }, safe=False, status=200)
 
